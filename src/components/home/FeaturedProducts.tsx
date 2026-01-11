@@ -30,7 +30,7 @@ export function FeaturedProducts({
         {/* Section header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
           <div className="gallery-reveal">
-            <span className={`text-[10px] uppercase tracking-[0.4em] font-medium block mb-4 ${isDark ? 'text-warm' : 'text-warm'}`}>
+            <span className={`text-[10px] uppercase tracking-[0.4em] font-medium block mb-4 ${isDark ? 'text-background/60' : 'text-muted-foreground'}`}>
               {subtitle}
             </span>
             <h2 className={`font-serif text-3xl md:text-4xl lg:text-5xl font-light leading-tight ${isDark ? 'text-background' : 'text-foreground'}`}>
@@ -44,7 +44,7 @@ export function FeaturedProducts({
               gallery-reveal stagger-1 group inline-flex items-center gap-3
               text-xs uppercase tracking-[0.2em] font-medium
               transition-colors duration-300
-              ${isDark ? 'text-background/70 hover:text-warm' : 'text-foreground hover:text-warm'}
+              ${isDark ? 'text-background/70 hover:text-background' : 'text-muted-foreground hover:text-foreground'}
             `}
           >
             <span>{viewAllText}</span>

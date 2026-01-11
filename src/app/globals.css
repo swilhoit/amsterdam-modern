@@ -50,49 +50,49 @@
 }
 
 :root {
-  --radius: 0.25rem;
-  /* Gallery white - warm off-white */
-  --background: #FAF9F7;
-  /* Deep charcoal for text */
-  --foreground: #1A1A1A;
-  /* Warm orange accent - Amsterdam Modern brand color */
-  --warm: #D4760D;
+  --radius: 0;
+  /* Pure white background */
+  --background: #FFFFFF;
+  /* Pure black for text */
+  --foreground: #000000;
+  /* Monochrome accent - black */
+  --warm: #000000;
   --warm-foreground: #FFFFFF;
-  /* Cards - pure white for product cards */
+  /* Cards - pure white */
   --card: #FFFFFF;
-  --card-foreground: #1A1A1A;
+  --card-foreground: #000000;
   --popover: #FFFFFF;
-  --popover-foreground: #1A1A1A;
-  /* Primary - charcoal */
-  --primary: #1A1A1A;
-  --primary-foreground: #FAF9F7;
-  /* Secondary - light warm gray */
-  --secondary: #F5F4F2;
-  --secondary-foreground: #1A1A1A;
+  --popover-foreground: #000000;
+  /* Primary - black */
+  --primary: #000000;
+  --primary-foreground: #FFFFFF;
+  /* Secondary - light gray */
+  --secondary: #F7F7F7;
+  --secondary-foreground: #000000;
   /* Muted - for subtle text */
-  --muted: #F5F4F2;
-  --muted-foreground: #6B6B6B;
-  /* Accent - warm orange */
-  --accent: #D4760D;
+  --muted: #F7F7F7;
+  --muted-foreground: #666666;
+  /* Accent - black for monochrome */
+  --accent: #000000;
   --accent-foreground: #FFFFFF;
-  --destructive: #DC2626;
-  /* Borders - very subtle */
-  --border: #E8E6E3;
-  --input: #E8E6E3;
-  --ring: #D4760D;
-  --chart-1: #D4760D;
-  --chart-2: #1A1A1A;
-  --chart-3: #6B6B6B;
-  --chart-4: #E8E6E3;
-  --chart-5: #FAF9F7;
-  --sidebar: #FAF9F7;
-  --sidebar-foreground: #1A1A1A;
-  --sidebar-primary: #1A1A1A;
-  --sidebar-primary-foreground: #FAF9F7;
-  --sidebar-accent: #F5F4F2;
-  --sidebar-accent-foreground: #1A1A1A;
-  --sidebar-border: #E8E6E3;
-  --sidebar-ring: #D4760D;
+  --destructive: #000000;
+  /* Borders - subtle gray */
+  --border: #E5E5E5;
+  --input: #E5E5E5;
+  --ring: #000000;
+  --chart-1: #000000;
+  --chart-2: #333333;
+  --chart-3: #666666;
+  --chart-4: #999999;
+  --chart-5: #CCCCCC;
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #000000;
+  --sidebar-primary: #000000;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F7F7F7;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #E5E5E5;
+  --sidebar-ring: #000000;
 }
 
 @layer base {
@@ -110,20 +110,20 @@
     @apply bg-background text-foreground;
     font-family: var(--font-sans);
     font-weight: 400;
-    letter-spacing: 0.01em;
-    line-height: 1.6;
+    letter-spacing: 0.02em;
+    line-height: 1.7;
   }
 
   /* Elegant serif headings */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-serif);
     font-weight: 400;
-    letter-spacing: 0.02em;
-    line-height: 1.2;
+    letter-spacing: 0.01em;
+    line-height: 1.15;
   }
 
   h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-weight: 300;
   }
 
@@ -142,8 +142,8 @@
   /* Gallery-style image reveal animation */
   .gallery-reveal {
     opacity: 0;
-    transform: translateY(20px);
-    animation: galleryReveal 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    transform: translateY(16px);
+    animation: galleryReveal 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   }
 
   @keyframes galleryReveal {
@@ -154,24 +154,22 @@
   }
 
   /* Staggered animation delays */
-  .stagger-1 { animation-delay: 0.1s; }
-  .stagger-2 { animation-delay: 0.2s; }
-  .stagger-3 { animation-delay: 0.3s; }
-  .stagger-4 { animation-delay: 0.4s; }
-  .stagger-5 { animation-delay: 0.5s; }
-  .stagger-6 { animation-delay: 0.6s; }
-  .stagger-7 { animation-delay: 0.7s; }
-  .stagger-8 { animation-delay: 0.8s; }
+  .stagger-1 { animation-delay: 0.05s; }
+  .stagger-2 { animation-delay: 0.1s; }
+  .stagger-3 { animation-delay: 0.15s; }
+  .stagger-4 { animation-delay: 0.2s; }
+  .stagger-5 { animation-delay: 0.25s; }
+  .stagger-6 { animation-delay: 0.3s; }
+  .stagger-7 { animation-delay: 0.35s; }
+  .stagger-8 { animation-delay: 0.4s; }
 
   /* Elegant hover lift effect */
   .hover-lift {
-    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .hover-lift:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(26, 26, 26, 0.08);
+    transform: translateY(-4px);
   }
 
   /* Image zoom on hover */
@@ -180,11 +178,11 @@
   }
 
   .image-zoom img {
-    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .image-zoom:hover img {
-    transform: scale(1.05);
+    transform: scale(1.03);
   }
 
   /* Category card overlay */
@@ -197,12 +195,12 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(26, 26, 26, 0.4) 0%, transparent 50%);
-    transition: opacity 0.5s ease;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, transparent 60%);
+    transition: opacity 0.4s ease;
   }
 
   .category-overlay:hover::after {
-    opacity: 0.7;
+    opacity: 0.8;
   }
 
   /* Underline animation for links */
@@ -213,12 +211,12 @@
   .link-underline::after {
     content: '';
     position: absolute;
-    bottom: -2px;
+    bottom: -1px;
     left: 0;
     width: 0;
     height: 1px;
-    background-color: var(--warm);
-    transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background-color: currentColor;
+    transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .link-underline:hover::after {
@@ -228,8 +226,8 @@
   /* Product info reveal */
   .product-info {
     opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateY(8px);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .product-card:hover .product-info {
@@ -237,50 +235,52 @@
     transform: translateY(0);
   }
 
-  /* Elegant button styles */
+  /* Elegant button styles - minimal */
   .btn-gallery {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.75rem 2rem;
+    padding: 0.875rem 2.5rem;
     font-family: var(--font-sans);
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     font-weight: 500;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .btn-gallery-primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.75rem 2rem;
+    padding: 0.875rem 2.5rem;
     font-family: var(--font-sans);
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     font-weight: 500;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     background-color: var(--primary);
     color: var(--primary-foreground);
+    border: 1px solid var(--primary);
   }
 
   .btn-gallery-primary:hover {
-    background-color: var(--warm);
+    background-color: transparent;
+    color: var(--primary);
   }
 
   .btn-gallery-outline {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.75rem 2rem;
+    padding: 0.875rem 2.5rem;
     font-family: var(--font-sans);
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     font-weight: 500;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     background-color: transparent;
     border: 1px solid var(--primary);
     color: var(--primary);
@@ -294,28 +294,28 @@
   /* Navigation link styles */
   .nav-link {
     font-family: var(--font-sans);
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 500;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--foreground);
-    transition: color 0.3s ease;
+    transition: opacity 0.3s ease;
   }
 
   .nav-link:hover {
-    color: var(--warm);
+    opacity: 0.5;
   }
 
   /* Price tag styling */
   .price-tag {
     font-family: var(--font-sans);
-    font-weight: 500;
+    font-weight: 400;
     letter-spacing: 0.05em;
   }
 
   /* Scroll indicator */
   .scroll-indicator {
-    animation: bounce 2s infinite;
+    animation: bounce 2.5s infinite;
   }
 
   @keyframes bounce {
@@ -323,34 +323,33 @@
       transform: translateY(0);
     }
     40% {
-      transform: translateY(-10px);
+      transform: translateY(-8px);
     }
     60% {
-      transform: translateY(-5px);
+      transform: translateY(-4px);
     }
   }
 }
 
-/* Custom scrollbar */
+/* Minimal scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 4px;
+  background: #CCCCCC;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--muted-foreground);
+  background: #999999;
 }
 
-/* Selection color */
+/* Selection color - monochrome */
 ::selection {
-  background-color: var(--warm);
-  color: white;
+  background-color: #000000;
+  color: #FFFFFF;
 }

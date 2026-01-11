@@ -63,7 +63,7 @@ export function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`nav-link link-underline ${pathname === link.href ? 'text-warm' : ''}`}
+                  className={`nav-link link-underline ${pathname === link.href ? 'text-foreground' : ''}`}
                 >
                   {link.label}
                 </Link>
@@ -133,7 +133,7 @@ export function Header() {
             {/* Logo */}
             <Link href="/" className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0">
               <h1 className="font-serif text-2xl md:text-3xl tracking-wide text-foreground">
-                AMSTERDAM <span className="text-warm">MODERN</span>
+                AMSTERDAM MODERN
               </h1>
             </Link>
 
@@ -147,7 +147,7 @@ export function Header() {
                     placeholder="Search products..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-48 md:w-64 h-9 text-sm bg-transparent border-border focus:border-warm"
+                    className="w-48 md:w-64 h-9 text-sm bg-transparent border-border focus:border-foreground"
                   />
                   <button
                     type="button"
@@ -164,7 +164,7 @@ export function Header() {
               ) : (
                 <button
                   onClick={() => setIsSearchOpen(true)}
-                  className="p-2 hover:text-warm transition-colors"
+                  className="p-2 hover:text-foreground transition-colors"
                   aria-label="Open search"
                 >
                   <Search className="w-5 h-5" />
@@ -185,7 +185,7 @@ export function Header() {
                 href={`/category/${category.slug}`}
                 className={`nav-link link-underline transition-colors ${
                   isActiveCategory(category.slug)
-                    ? 'text-warm after:scale-x-100'
+                    ? 'text-foreground after:scale-x-100'
                     : ''
                 }`}
               >

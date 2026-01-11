@@ -10,7 +10,7 @@ export function Footer() {
           <div className="lg:col-span-1">
             <Link href="/">
               <h2 className="font-serif text-2xl tracking-wide mb-6">
-                AMSTERDAM <span className="text-warm">MODERN</span>
+                AMSTERDAM MODERN
               </h2>
             </Link>
             <p className="text-sm text-background/70 leading-relaxed mb-6">
@@ -20,7 +20,7 @@ export function Footer() {
               <p>Los Angeles, California</p>
               <a
                 href="mailto:info@amsterdammodern.com"
-                className="hover:text-warm transition-colors"
+                className="hover:text-background transition-colors"
               >
                 info@amsterdammodern.com
               </a>
@@ -38,7 +38,7 @@ export function Footer() {
                 <Link
                   key={category.id}
                   href={`/category/${category.slug}`}
-                  className="text-sm text-background/70 hover:text-warm transition-colors"
+                  className="text-sm text-background/70 hover:text-background transition-colors"
                 >
                   {category.name}
                 </Link>
@@ -52,19 +52,19 @@ export function Footer() {
               Information
             </h3>
             <nav className="flex flex-col gap-3">
-              <Link href="/about" className="text-sm text-background/70 hover:text-warm transition-colors">
+              <Link href="/about" className="text-sm text-background/70 hover:text-background transition-colors">
                 About Us
               </Link>
-              <Link href="/contact" className="text-sm text-background/70 hover:text-warm transition-colors">
+              <Link href="/contact" className="text-sm text-background/70 hover:text-background transition-colors">
                 Contact
               </Link>
-              <Link href="/shipping" className="text-sm text-background/70 hover:text-warm transition-colors">
+              <Link href="/shipping" className="text-sm text-background/70 hover:text-background transition-colors">
                 Shipping & Returns
               </Link>
-              <Link href="/faq" className="text-sm text-background/70 hover:text-warm transition-colors">
+              <Link href="/faq" className="text-sm text-background/70 hover:text-background transition-colors">
                 FAQ
               </Link>
-              <Link href="/terms" className="text-sm text-background/70 hover:text-warm transition-colors">
+              <Link href="/terms" className="text-sm text-background/70 hover:text-background transition-colors">
                 Terms & Conditions
               </Link>
             </nav>
@@ -82,11 +82,11 @@ export function Footer() {
               <input
                 type="email"
                 placeholder="Your email"
-                className="w-full px-4 py-3 bg-transparent border border-background/20 text-sm placeholder:text-background/40 focus:outline-none focus:border-warm transition-colors"
+                className="w-full px-4 py-3 bg-transparent border border-background/20 text-sm placeholder:text-background/40 focus:outline-none focus:border-background transition-colors"
               />
               <button
                 type="submit"
-                className="btn-gallery bg-warm text-white hover:bg-warm/90"
+                className="btn-gallery bg-background text-foreground hover:bg-background/90"
               >
                 Subscribe
               </button>
@@ -104,7 +104,7 @@ export function Footer() {
               href="https://instagram.com/amsterdammodern"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs uppercase tracking-widest text-background/50 hover:text-warm transition-colors"
+              className="text-xs uppercase tracking-widest text-background/50 hover:text-background transition-colors"
             >
               Instagram
             </a>
@@ -112,7 +112,7 @@ export function Footer() {
               href="https://pinterest.com/amsterdammodern"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs uppercase tracking-widest text-background/50 hover:text-warm transition-colors"
+              className="text-xs uppercase tracking-widest text-background/50 hover:text-background transition-colors"
             >
               Pinterest
             </a>
@@ -120,7 +120,7 @@ export function Footer() {
               href="https://facebook.com/amsterdammodernpage"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs uppercase tracking-widest text-background/50 hover:text-warm transition-colors"
+              className="text-xs uppercase tracking-widest text-background/50 hover:text-background transition-colors"
             >
               Facebook
             </a>

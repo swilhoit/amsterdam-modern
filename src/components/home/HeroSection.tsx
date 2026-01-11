@@ -22,12 +22,12 @@ export function HeroSection({ featuredProducts = [] }: HeroSectionProps) {
         {/* Left side - Branding & Copy */}
         <div className="relative flex flex-col justify-center px-8 lg:px-16 xl:px-24 py-20 lg:py-32 order-2 lg:order-1">
           {/* Decorative vertical line */}
-          <div className="absolute left-8 lg:left-16 top-32 w-px h-16 bg-gradient-to-b from-warm/60 to-transparent hidden lg:block" />
+          <div className="absolute left-8 lg:left-16 top-32 w-px h-16 bg-gradient-to-b from-foreground/30 to-transparent hidden lg:block" />
 
           <div className="relative max-w-xl">
             {/* Tagline */}
             <div className="gallery-reveal mb-8">
-              <span className="inline-block text-[10px] uppercase tracking-[0.4em] text-warm font-medium">
+              <span className="inline-block text-[10px] uppercase tracking-[0.4em] text-muted-foreground font-medium">
                 Est. 2005 — Los Angeles
               </span>
             </div>
@@ -36,7 +36,7 @@ export function HeroSection({ featuredProducts = [] }: HeroSectionProps) {
             <h1 className="gallery-reveal stagger-1 font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-[1.05] mb-8 tracking-tight">
               Curated
               <br />
-              <span className="italic text-warm">Mid-Century</span>
+              <span className="italic">Mid-Century</span>
               <br />
               Modern Design
             </h1>

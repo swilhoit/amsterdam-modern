@@ -62,7 +62,7 @@ export default async function HomePage() {
       <section className="py-24 lg:py-32 bg-foreground text-background">
         <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
           <div className="gallery-reveal">
-            <span className="text-[10px] uppercase tracking-[0.4em] text-warm font-medium block mb-8">
+            <span className="text-[10px] uppercase tracking-[0.4em] text-background/60 font-medium block mb-8">
               Our Philosophy
             </span>
           </div>
@@ -91,7 +91,7 @@ export default async function HomePage() {
       <section className="py-24 lg:py-32 bg-secondary">
         <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
           <div className="gallery-reveal">
-            <span className="text-[10px] uppercase tracking-[0.4em] text-warm font-medium block mb-6">
+            <span className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground font-medium block mb-6">
               Stay Connected
             </span>
           </div>

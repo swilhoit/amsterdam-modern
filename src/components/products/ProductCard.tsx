@@ -56,7 +56,7 @@ export function ProductCard({ product, index = 0, className }: ProductCardProps)
           {/* Quick actions */}
           <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <button
-              className="w-10 h-10 bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-warm hover:text-white transition-colors duration-300"
+              className="w-10 h-10 bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-300"
               aria-label="Add to favorites"
               onClick={(e) => {
                 e.preventDefault();
@@ -70,7 +70,7 @@ export function ProductCard({ product, index = 0, className }: ProductCardProps)
           {/* Just landed badge */}
           {product.category === 'JUST LANDED' && (
             <div className="absolute top-4 left-4">
-              <span className="text-[10px] uppercase tracking-[0.2em] text-white font-medium px-3 py-1.5 bg-warm">
+              <span className="text-[10px] uppercase tracking-[0.2em] text-white font-medium px-3 py-1.5 bg-black">
                 New
               </span>
             </div>
@@ -87,7 +87,7 @@ export function ProductCard({ product, index = 0, className }: ProductCardProps)
           )}
 
           {/* Product name */}
-          <h3 className="font-serif text-base lg:text-lg leading-tight line-clamp-2 group-hover:text-warm transition-colors duration-300">
+          <h3 className="font-serif text-base lg:text-lg leading-tight line-clamp-2 group-hover:opacity-60 transition-opacity duration-300">
             {product.name}
           </h3>
 

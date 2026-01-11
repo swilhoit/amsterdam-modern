@@ -31,7 +31,7 @@ export function CategoryGrid({ className = '', categoryProducts = {} }: Category
         {/* Section header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
           <div className="gallery-reveal">
-            <span className="text-[10px] uppercase tracking-[0.4em] text-warm font-medium block mb-4">
+            <span className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground font-medium block mb-4">
               The Collection
             </span>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light leading-tight">
