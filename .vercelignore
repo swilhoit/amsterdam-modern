@@ -1,0 +1,11 @@
+# Ignore large data files
+data/
+
+# Development files
+.claude/
+.playwright-mcp/
+*.log
+
+# Large cache
+.next/cache/
+node_modules/
