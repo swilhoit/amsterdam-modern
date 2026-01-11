@@ -42,6 +42,9 @@ yarn-error.log*
 # playwright screenshots
 .playwright-mcp/
 
+# scraped product data (too large for GitHub, can be regenerated)
+data/products/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
