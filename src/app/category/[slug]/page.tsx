@@ -82,7 +82,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
       <nav className="mb-8 gallery-reveal">
         <ol className="flex items-center gap-2 text-sm text-muted-foreground">
           <li>
-            <Link href="/" className="hover:text-warm transition-colors">
+            <Link href="/" className="hover:text-foreground transition-colors">
               Home
             </Link>
           </li>
@@ -93,7 +93,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
 
       {/* Category header */}
       <header className="mb-12 gallery-reveal stagger-1">
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-4">
+        <h1 className="text-xl md:text-2xl lg:text-3xl font-medium uppercase tracking-wide mb-4">
           {category.name}
         </h1>
         {category.description && (
@@ -134,7 +134,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
               <p className="text-muted-foreground mb-4">No products match your filters.</p>
               <Link
                 href={`/category/${slug}`}
-                className="text-sm text-warm hover:underline"
+                className="text-sm text-foreground hover:underline"
               >
                 Clear all filters
               </Link>
@@ -147,7 +147,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
               {currentPage > 1 && (
                 <Link
                   href={`/category/${slug}?${buildQueryString(currentPage - 1)}`}
-                  className="px-4 py-2 text-sm hover:text-warm transition-colors"
+                  className="px-4 py-2 text-sm hover:text-foreground transition-colors"
                 >
                   ← Previous
                 </Link>
@@ -185,7 +185,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
               {currentPage < totalPages && (
                 <Link
                   href={`/category/${slug}?${buildQueryString(currentPage + 1)}`}
-                  className="px-4 py-2 text-sm hover:text-warm transition-colors"
+                  className="px-4 py-2 text-sm hover:text-foreground transition-colors"
                 >
                   Next →
                 </Link>

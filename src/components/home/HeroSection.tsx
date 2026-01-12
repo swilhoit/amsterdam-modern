@@ -33,12 +33,8 @@ export function HeroSection({ featuredProducts = [] }: HeroSectionProps) {
             </div>
 
             {/* Main heading */}
-            <h1 className="gallery-reveal stagger-1 font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-[1.05] mb-8 tracking-tight">
-              Curated
-              <br />
-              <span className="italic">Mid-Century</span>
-              <br />
-              Modern Design
+            <h1 className="gallery-reveal stagger-1 text-2xl md:text-3xl lg:text-4xl font-medium leading-tight mb-6 tracking-tight uppercase">
+              Curated Mid-Century Modern Design
             </h1>
 
             {/* Description */}
@@ -68,11 +64,11 @@ export function HeroSection({ featuredProducts = [] }: HeroSectionProps) {
           {/* Bottom stats */}
           <div className="gallery-reveal stagger-4 absolute bottom-12 left-8 lg:left-16 xl:left-24 flex gap-12">
             <div>
-              <span className="block text-2xl lg:text-3xl font-serif text-foreground">500+</span>
+              <span className="block text-xl lg:text-2xl font-medium text-foreground">500+</span>
               <span className="text-xs uppercase tracking-widest text-muted-foreground">Pieces</span>
             </div>
             <div>
-              <span className="block text-2xl lg:text-3xl font-serif text-foreground">19</span>
+              <span className="block text-xl lg:text-2xl font-medium text-foreground">19</span>
               <span className="text-xs uppercase tracking-widest text-muted-foreground">Years</span>
             </div>
           </div>
@@ -103,7 +99,7 @@ export function HeroSection({ featuredProducts = [] }: HeroSectionProps) {
                   <span className="text-[10px] uppercase tracking-[0.3em] text-white/70 block mb-2">
                     Featured
                   </span>
-                  <h3 className="font-serif text-xl lg:text-2xl mb-2 line-clamp-1">
+                  <h3 className="text-sm lg:text-base font-medium mb-2 line-clamp-1">
                     {mainProduct.name}
                   </h3>
                   <span className="text-sm text-white/80">
@@ -129,7 +125,7 @@ export function HeroSection({ featuredProducts = [] }: HeroSectionProps) {
                     />
                     <div className="absolute inset-0 bg-foreground/20 group-hover:bg-foreground/40 transition-colors duration-500" />
                     <div className="absolute bottom-0 left-0 right-0 p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <h4 className="font-serif text-sm line-clamp-1">{product.name}</h4>
+                      <h4 className="text-xs font-medium line-clamp-1">{product.name}</h4>
                     </div>
                   </Link>
                 ))}

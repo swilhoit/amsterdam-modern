@@ -10,10 +10,10 @@ export default function ContactPage() {
     <div className="max-w-[1800px] mx-auto px-6 lg:px-12 py-8">
       {/* Header */}
       <header className="max-w-4xl mx-auto text-center mb-16">
-        <p className="text-xs uppercase tracking-[0.4em] text-warm mb-6 gallery-reveal">
+        <p className="text-xs uppercase tracking-[0.4em] text-foreground mb-6 gallery-reveal">
           Get In Touch
         </p>
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-8 gallery-reveal stagger-1">
+        <h1 className="text-xl md:text-2xl lg:text-3xl font-medium uppercase tracking-wide mb-8 gallery-reveal stagger-1">
           Contact Us
         </h1>
         <p className="text-lg text-muted-foreground gallery-reveal stagger-2">
@@ -25,7 +25,7 @@ export default function ContactPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
         {/* Contact form */}
         <div className="gallery-reveal stagger-3">
-          <h2 className="font-serif text-2xl mb-8">Send Us a Message</h2>
+          <h2 className="text-base font-medium uppercase tracking-wide mb-8">Send Us a Message</h2>
           <form className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
@@ -101,7 +101,7 @@ export default function ContactPage() {
 
         {/* Contact info */}
         <div className="gallery-reveal stagger-4">
-          <h2 className="font-serif text-2xl mb-8">Visit Our Showroom</h2>
+          <h2 className="text-base font-medium uppercase tracking-wide mb-8">Visit Our Showroom</h2>
 
           <div className="space-y-8">
             <div>
@@ -135,7 +135,7 @@ export default function ContactPage() {
                 <p>
                   <a
                     href="mailto:info@amsterdammodern.com"
-                    className="hover:text-warm transition-colors"
+                    className="hover:text-foreground transition-colors"
                   >
                     info@amsterdammodern.com
                   </a>
@@ -143,7 +143,7 @@ export default function ContactPage() {
                 <p>
                   <a
                     href="tel:+12132217380"
-                    className="hover:text-warm transition-colors"
+                    className="hover:text-foreground transition-colors"
                   >
                     213-221-7380
                   </a>
@@ -160,7 +160,7 @@ export default function ContactPage() {
                   href="https://instagram.com/amsterdammodern"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm uppercase tracking-widest hover:text-warm transition-colors"
+                  className="text-sm uppercase tracking-widest hover:text-foreground transition-colors"
                 >
                   Instagram
                 </a>
@@ -168,7 +168,7 @@ export default function ContactPage() {
                   href="https://pinterest.com/amsterdammodern"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm uppercase tracking-widest hover:text-warm transition-colors"
+                  className="text-sm uppercase tracking-widest hover:text-foreground transition-colors"
                 >
                   Pinterest
                 </a>
@@ -176,7 +176,7 @@ export default function ContactPage() {
                   href="https://facebook.com/amsterdammodernpage"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm uppercase tracking-widest hover:text-warm transition-colors"
+                  className="text-sm uppercase tracking-widest hover:text-foreground transition-colors"
                 >
                   Facebook
                 </a>

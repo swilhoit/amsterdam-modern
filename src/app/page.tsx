@@ -66,7 +66,7 @@ export default async function HomePage() {
               Our Philosophy
             </span>
           </div>
-          <blockquote className="gallery-reveal stagger-1 font-serif text-2xl md:text-3xl lg:text-4xl font-light leading-relaxed mb-10 italic">
+          <blockquote className="gallery-reveal stagger-1 text-base md:text-lg lg:text-xl font-normal leading-relaxed mb-10">
             &ldquo;We believe in the enduring value of exceptional design. Each piece in our collection
             represents the best of mid-century modernism&mdash;functional, beautiful, and built to last.&rdquo;
           </blockquote>
@@ -95,7 +95,7 @@ export default async function HomePage() {
               Stay Connected
             </span>
           </div>
-          <h2 className="gallery-reveal stagger-1 font-serif text-3xl md:text-4xl lg:text-5xl font-light mb-6">
+          <h2 className="gallery-reveal stagger-1 text-lg md:text-xl lg:text-2xl font-medium uppercase tracking-wide mb-6">
             Visit Our Showroom
           </h2>
           <p className="gallery-reveal stagger-2 text-muted-foreground max-w-xl mx-auto mb-10 leading-relaxed">

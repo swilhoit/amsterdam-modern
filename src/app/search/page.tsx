@@ -26,7 +26,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
       <nav className="mb-8 gallery-reveal">
         <ol className="flex items-center gap-2 text-sm text-muted-foreground">
           <li>
-            <Link href="/" className="hover:text-warm transition-colors">
+            <Link href="/" className="hover:text-foreground transition-colors">
               Home
             </Link>
           </li>
@@ -37,7 +37,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
       {/* Header */}
       <header className="mb-12 gallery-reveal stagger-1">
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-4">
+        <h1 className="text-xl md:text-2xl lg:text-3xl font-medium uppercase tracking-wide mb-4">
           Search Results
         </h1>
         {q && (

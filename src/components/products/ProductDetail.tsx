@@ -47,7 +47,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
       <nav className="mb-8 gallery-reveal">
         <ol className="flex items-center gap-2 text-sm text-muted-foreground">
           <li>
-            <Link href="/" className="hover:text-warm transition-colors">
+            <Link href="/" className="hover:text-foreground transition-colors">
               Home
             </Link>
           </li>
@@ -55,7 +55,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
           <li>
             <Link
               href={`/category/${getCategorySlug(product.category)}`}
-              className="hover:text-warm transition-colors"
+              className="hover:text-foreground transition-colors"
             >
               {product.category}
             </Link>
@@ -101,14 +101,14 @@ export function ProductDetail({ product }: ProductDetailProps) {
               <>
                 <button
                   onClick={prevImage}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-warm hover:text-white transition-colors"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-foreground hover:text-white transition-colors"
                   aria-label="Previous image"
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
                 <button
                   onClick={nextImage}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-warm hover:text-white transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-foreground hover:text-white transition-colors"
                   aria-label="Next image"
                 >
                   <ChevronRight className="w-5 h-5" />
@@ -127,7 +127,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
                   className={cn(
                     'relative w-20 h-20 flex-shrink-0 bg-secondary overflow-hidden transition-all duration-300',
                     selectedImageIndex === index
-                      ? 'ring-2 ring-warm'
+                      ? 'ring-2 ring-foreground'
                       : 'opacity-60 hover:opacity-100'
                   )}
                 >
@@ -154,7 +154,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
           )}
 
           {/* Product name */}
-          <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light mb-6 leading-tight">
+          <h1 className="text-lg md:text-xl lg:text-2xl font-medium mb-6 leading-tight">
             {product.name}
           </h1>
 
@@ -162,7 +162,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
           <div className="flex items-baseline gap-4 mb-8 pb-8 border-b border-border">
             <span
               className={cn(
-                'text-2xl font-serif',
+                'text-base font-medium',
                 isSold ? 'text-muted-foreground line-through' : 'text-foreground'
               )}
             >
@@ -205,7 +205,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
                 <span className="text-sm text-muted-foreground">Category</span>
                 <Link
                   href={`/category/${getCategorySlug(product.category)}`}
-                  className="text-sm hover:text-warm transition-colors"
+                  className="text-sm hover:text-foreground transition-colors"
                 >
                   {product.category.replace(/^\d+-/, '').replace(/-/g, ' ')}
                 </Link>
@@ -252,12 +252,12 @@ export function ProductDetail({ product }: ProductDetailProps) {
               Contact us at{' '}
               <a
                 href="mailto:info@amsterdammodern.com"
-                className="text-warm hover:underline"
+                className="text-foreground hover:underline"
               >
                 info@amsterdammodern.com
               </a>
               {' '}or call{' '}
-              <a href="tel:+12132217380" className="text-warm hover:underline">
+              <a href="tel:+12132217380" className="text-foreground hover:underline">
                 213-221-7380
               </a>
             </p>

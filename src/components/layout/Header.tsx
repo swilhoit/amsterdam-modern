@@ -132,7 +132,7 @@ export function Header() {
 
             {/* Logo */}
             <Link href="/" className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0">
-              <h1 className="font-serif text-2xl md:text-3xl tracking-wide text-foreground">
+              <h1 className="text-sm md:text-base font-medium tracking-[0.2em] uppercase text-foreground">
                 AMSTERDAM MODERN
               </h1>
             </Link>

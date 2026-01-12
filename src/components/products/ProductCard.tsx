@@ -87,7 +87,7 @@ export function ProductCard({ product, index = 0, className }: ProductCardProps)
           )}
 
           {/* Product name */}
-          <h3 className="font-serif text-base lg:text-lg leading-tight line-clamp-2 group-hover:opacity-60 transition-opacity duration-300">
+          <h3 className="text-sm font-medium leading-tight line-clamp-2 group-hover:opacity-60 transition-opacity duration-300">
             {product.name}
           </h3>
 

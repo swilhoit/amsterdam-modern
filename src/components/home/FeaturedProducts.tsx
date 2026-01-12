@@ -33,7 +33,7 @@ export function FeaturedProducts({
             <span className={`text-[10px] uppercase tracking-[0.4em] font-medium block mb-4 ${isDark ? 'text-background/60' : 'text-muted-foreground'}`}>
               {subtitle}
             </span>
-            <h2 className={`font-serif text-3xl md:text-4xl lg:text-5xl font-light leading-tight ${isDark ? 'text-background' : 'text-foreground'}`}>
+            <h2 className={`text-lg md:text-xl lg:text-2xl font-medium leading-tight uppercase tracking-wide ${isDark ? 'text-background' : 'text-foreground'}`}>
               {title}
             </h2>
           </div>

@@ -34,7 +34,7 @@ export function CategoryGrid({ className = '', categoryProducts = {} }: Category
             <span className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground font-medium block mb-4">
               The Collection
             </span>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light leading-tight">
+            <h2 className="text-lg md:text-xl lg:text-2xl font-medium leading-tight uppercase tracking-wide">
               Browse by Category
             </h2>
           </div>
@@ -86,7 +86,7 @@ export function CategoryGrid({ className = '', categoryProducts = {} }: Category
                 {/* Content */}
                 <div className="absolute inset-0 flex flex-col justify-end p-6 lg:p-8">
                   <div className="transform transition-transform duration-500 group-hover:translate-y-[-4px]">
-                    <h3 className="font-serif text-2xl lg:text-3xl text-white mb-2">
+                    <h3 className="text-base lg:text-lg font-medium text-white mb-1">
                       {meta.title}
                     </h3>
                     <p className="text-sm text-white/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500">

@@ -9,7 +9,7 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/">
-              <h2 className="font-serif text-2xl tracking-wide mb-6">
+              <h2 className="text-sm font-medium tracking-[0.2em] uppercase mb-6">
                 AMSTERDAM MODERN
               </h2>
             </Link>

@@ -80,7 +80,7 @@ export function FilterSidebar({ totalProducts, priceRange, availabilityCount }: 
     <div className="space-y-8">
       {/* Price Range */}
       <div>
-        <h3 className="font-serif text-sm uppercase tracking-wider mb-4">Price Range</h3>
+        <h3 className="font-medium text-sm uppercase tracking-wider mb-4">Price Range</h3>
         <div className="space-y-2">
           {PRICE_RANGES.map(({ label, min, max }) => {
             const isSelected = currentMinPrice === String(min) && currentMaxPrice === String(max);
@@ -90,7 +90,7 @@ export function FilterSidebar({ totalProducts, priceRange, availabilityCount }: 
                 onClick={() => handlePriceRangeClick(min, max)}
                 className={`block w-full text-left text-sm py-1.5 transition-colors ${
                   isSelected
-                    ? 'text-warm font-medium'
+                    ? 'text-foreground font-medium'
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
@@ -103,13 +103,13 @@ export function FilterSidebar({ totalProducts, priceRange, availabilityCount }: 
 
       {/* Availability */}
       <div>
-        <h3 className="font-serif text-sm uppercase tracking-wider mb-4">Availability</h3>
+        <h3 className="font-medium text-sm uppercase tracking-wider mb-4">Availability</h3>
         <div className="space-y-2">
           <button
             onClick={() => handleAvailabilityClick('in-stock')}
             className={`flex items-center justify-between w-full text-left text-sm py-1.5 transition-colors ${
               currentAvailability === 'in-stock'
-                ? 'text-warm font-medium'
+                ? 'text-foreground font-medium'
                 : 'text-muted-foreground hover:text-foreground'
             }`}
           >
@@ -120,7 +120,7 @@ export function FilterSidebar({ totalProducts, priceRange, availabilityCount }: 
             onClick={() => handleAvailabilityClick('sold')}
             className={`flex items-center justify-between w-full text-left text-sm py-1.5 transition-colors ${
               currentAvailability === 'sold'
-                ? 'text-warm font-medium'
+                ? 'text-foreground font-medium'
                 : 'text-muted-foreground hover:text-foreground'
             }`}
           >
@@ -134,7 +134,7 @@ export function FilterSidebar({ totalProducts, priceRange, availabilityCount }: 
       {hasActiveFilters && (
         <button
           onClick={clearAllFilters}
-          className="text-sm text-warm hover:underline"
+          className="text-sm text-foreground hover:underline"
         >
           Clear all filters
         </button>
@@ -147,7 +147,7 @@ export function FilterSidebar({ totalProducts, priceRange, availabilityCount }: 
       {/* Mobile filter button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 bg-foreground text-background px-6 py-3 text-sm uppercase tracking-wider z-40 shadow-lg hover:bg-warm transition-colors"
+        className="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 bg-foreground text-background px-6 py-3 text-sm uppercase tracking-wider z-40 shadow-lg hover:bg-foreground/80 transition-colors"
       >
         Filters {hasActiveFilters && '•'}
       </button>
@@ -161,7 +161,7 @@ export function FilterSidebar({ totalProducts, priceRange, availabilityCount }: 
           />
           <div className="absolute right-0 top-0 h-full w-80 bg-background p-6 overflow-y-auto">
             <div className="flex items-center justify-between mb-8">
-              <h2 className="font-serif text-xl">Filters</h2>
+              <h2 className="font-medium text-xl">Filters</h2>
               <button
                 onClick={() => setIsOpen(false)}
                 className="text-muted-foreground hover:text-foreground"
@@ -179,7 +179,7 @@ export function FilterSidebar({ totalProducts, priceRange, availabilityCount }: 
       {/* Desktop sidebar */}
       <aside className="hidden lg:block w-64 flex-shrink-0 pr-12">
         <div className="sticky top-28">
-          <h2 className="font-serif text-xs uppercase tracking-[0.3em] text-muted-foreground mb-8">
+          <h2 className="font-medium text-xs uppercase tracking-[0.3em] text-muted-foreground mb-8">
             Filter
           </h2>
           <FilterContent />
