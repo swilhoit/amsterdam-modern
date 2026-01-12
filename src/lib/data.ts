@@ -112,6 +112,26 @@ function getCategoryFileSlug(categoryName: string): string {
 }
 
 /**
+ * Check if an image URL is a placeholder
+ */
+function isPlaceholderImage(url: string): boolean {
+  return url.includes('picsum.photos') ||
+         url.includes('placeholder.com') ||
+         url.includes('via.placeholder');
+}
+
+/**
+ * Filter out placeholder images from a product
+ */
+function filterPlaceholderImages(product: Product): Product {
+  const realImages = product.images.filter(img => !isPlaceholderImage(img.url));
+  return {
+    ...product,
+    images: realImages,
+  };
+}
+
+/**
  * Load products from local JSON file
  */
 async function loadLocalProducts(categorySlug: string): Promise<Product[]> {
@@ -120,7 +140,12 @@ async function loadLocalProducts(categorySlug: string): Promise<Product[]> {
 
     if (fs.existsSync(filePath)) {
       const data = fs.readFileSync(filePath, 'utf-8');
-      return JSON.parse(data) as Product[];
+      const products = JSON.parse(data) as Product[];
+
+      // Filter out placeholder images and exclude products with no real images
+      return products
+        .map(filterPlaceholderImages)
+        .filter(p => p.images.length > 0);
     }
   } catch (error) {
     console.error(`Error loading products for ${categorySlug}:`, error);
@@ -145,7 +170,12 @@ async function loadAllLocalProducts(): Promise<Product[]> {
     const allProductsPath = path.join(process.cwd(), 'data', 'products', 'all-products.json');
     if (fs.existsSync(allProductsPath)) {
       const data = fs.readFileSync(allProductsPath, 'utf-8');
-      return JSON.parse(data) as Product[];
+      const products = JSON.parse(data) as Product[];
+
+      // Filter out placeholder images and exclude products with no real images
+      return products
+        .map(filterPlaceholderImages)
+        .filter(p => p.images.length > 0);
     }
   } catch (error) {
     console.error('Error loading all products:', error);
