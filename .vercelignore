@@ -1,5 +1,5 @@
-# Ignore large data files
-data/
+# Ignore only the huge Archive file (294MB)
+data/products/15-ARCHIVE.json
 
 # Development files
 .claude/
@@ -8,4 +8,3 @@ data/
 
 # Large cache
 .next/cache/
-node_modules/

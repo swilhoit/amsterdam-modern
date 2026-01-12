@@ -42,8 +42,8 @@ yarn-error.log*
 # playwright screenshots
 .playwright-mcp/
 
-# scraped product data (too large for GitHub, can be regenerated)
-data/products/
+# Only exclude the huge Archive file (294MB)
+data/products/15-ARCHIVE.json
 
 # typescript
 *.tsbuildinfo
