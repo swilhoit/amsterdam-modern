@@ -72,7 +72,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
         <div className="gallery-reveal">
           {/* Main image */}
           <div className="relative aspect-square bg-secondary mb-4 overflow-hidden">
-            {product.images[selectedImageIndex] ? (
+            {product.images[selectedImageIndex]?.url && (
               <Image
                 src={product.images[selectedImageIndex].url}
                 alt={product.images[selectedImageIndex].alt || product.name}
@@ -81,10 +81,6 @@ export function ProductDetail({ product }: ProductDetailProps) {
                 className="object-cover"
                 priority
               />
-            ) : (
-              <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
-                <span className="text-xs uppercase tracking-wider">No image</span>
-              </div>
             )}
 
             {/* Sold overlay */}

@@ -30,7 +30,7 @@ export function ProductCard({ product, index = 0, className }: ProductCardProps)
         {/* Image container */}
         <div className="relative aspect-square bg-secondary overflow-hidden mb-4">
           {/* Product image */}
-          {product.images[0] ? (
+          {product.images[0]?.url && (
             <Image
               src={product.images[0].url}
               alt={product.images[0].alt || product.name}
@@ -38,10 +38,6 @@ export function ProductCard({ product, index = 0, className }: ProductCardProps)
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
               className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
-          ) : (
-            <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
-              <span className="text-xs uppercase tracking-wider">No image</span>
-            </div>
           )}
 
           {/* Sold overlay */}
