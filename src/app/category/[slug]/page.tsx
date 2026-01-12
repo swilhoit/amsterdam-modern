@@ -83,7 +83,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   };
 
   return (
-    <div className="max-w-[1800px] mx-auto px-6 lg:px-12 py-8 pt-24 md:pt-36">
+    <div className="max-w-[1800px] mx-auto px-6 lg:px-12 py-8 pt-20">
       {/* Breadcrumb */}
       <nav className="mb-8 gallery-reveal">
         <ol className="flex items-center gap-2 text-sm text-muted-foreground">

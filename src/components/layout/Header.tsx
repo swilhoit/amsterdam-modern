@@ -217,13 +217,13 @@ export function Header() {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isTransparent ? 'bg-transparent' : 'bg-background/95 backdrop-blur-sm'} ${isScrolled ? 'shadow-sm' : ''}`}>
-      {/* Main header - single row with logo, nav, and search */}
+      {/* Single row header with logo, nav links, and search */}
       <div className={`transition-colors duration-300 ${isTransparent ? 'border-b border-white/20' : 'border-b border-border/50'}`}>
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-12">
-          <div className="flex items-center justify-between h-16">
+        <div className="max-w-[1800px] mx-auto px-4 lg:px-8">
+          <div className="flex items-center justify-between h-14">
             {/* Mobile menu */}
             <Sheet>
-              <SheetTrigger asChild className="md:hidden">
+              <SheetTrigger asChild className="lg:hidden">
                 <button className={`p-2 -ml-2 transition-colors ${isTransparent ? 'text-white' : ''}`} aria-label="Open menu">
                   <Menu className="w-5 h-5" />
                 </button>
@@ -303,13 +303,35 @@ export function Header() {
 
             {/* Logo */}
             <Link href="/" className="flex-shrink-0">
-              <h1 className={`text-sm md:text-base font-medium tracking-[0.2em] uppercase transition-colors ${isTransparent ? 'text-white' : 'text-foreground'}`}>
-                AMSTERDAM MODERN
+              <h1 className={`text-[11px] lg:text-xs font-medium tracking-[0.15em] uppercase transition-colors ${isTransparent ? 'text-white' : 'text-foreground'}`}>
+                Amsterdam Modern
               </h1>
             </Link>
 
+            {/* Desktop nav - categories + contact */}
+            <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
+              {CATEGORIES.map((category) => (
+                <CategoryDropdown
+                  key={category.id}
+                  category={category}
+                  isActive={isActiveCategory(category.slug)}
+                  isTransparent={isTransparent}
+                />
+              ))}
+              <Link
+                href="/contact"
+                className={`text-[10px] uppercase tracking-[0.15em] transition-colors ${
+                  isTransparent
+                    ? 'text-white/80 hover:text-white'
+                    : 'text-muted-foreground hover:text-foreground'
+                } ${pathname === '/contact' ? (isTransparent ? 'text-white' : 'text-foreground') : ''}`}
+              >
+                Contact
+              </Link>
+            </nav>
+
             {/* Search */}
-            <div className="flex items-center gap-4" ref={searchContainerRef}>
+            <div className="flex items-center" ref={searchContainerRef}>
               {isSearchOpen ? (
                 <div className="relative">
                   <form onSubmit={handleSearch} className="flex items-center gap-2 animate-in slide-in-from-right-4">
@@ -318,10 +340,10 @@ export function Header() {
                       <input
                         ref={searchInputRef}
                         type="search"
-                        placeholder="Search products..."
+                        placeholder="Search..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className={`w-64 md:w-80 h-10 pl-10 pr-4 text-sm bg-transparent rounded-full outline-none transition-colors ${
+                        className={`w-48 lg:w-64 h-9 pl-9 pr-3 text-sm bg-transparent rounded-full outline-none transition-colors ${
                           isTransparent
                             ? 'border border-white/50 text-white placeholder:text-white/50 focus:border-white'
                             : 'border border-border text-foreground placeholder:text-muted-foreground focus:border-foreground'
@@ -331,7 +353,7 @@ export function Header() {
                     <button
                       type="button"
                       onClick={closeSearch}
-                      className={`p-2 transition-colors ${isTransparent ? 'text-white' : ''}`}
+                      className={`p-1.5 transition-colors ${isTransparent ? 'text-white' : ''}`}
                       aria-label="Close search"
                     >
                       <X className="w-4 h-4" />
@@ -340,7 +362,7 @@ export function Header() {
 
                   {/* Search results dropdown */}
                   {(searchResults.length > 0 || isSearching) && searchQuery.length >= 2 && (
-                    <div className="absolute top-full right-0 mt-2 w-80 bg-background border border-border rounded-xl shadow-lg overflow-hidden z-50">
+                    <div className="absolute top-full right-0 mt-2 w-72 lg:w-80 bg-background border border-border rounded-xl shadow-lg overflow-hidden z-50">
                       {isSearching ? (
                         <div className="p-4 text-center text-sm text-muted-foreground">
                           Searching...
@@ -377,37 +399,11 @@ export function Header() {
                   className={`p-2 transition-colors ${isTransparent ? 'text-white hover:text-white/70' : 'hover:text-foreground'}`}
                   aria-label="Open search"
                 >
-                  <Search className="w-5 h-5" />
+                  <Search className="w-4 h-4" />
                 </button>
               )}
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Category navigation */}
-      <div className={`hidden md:block transition-colors duration-300 ${isTransparent ? 'border-b border-white/20 bg-transparent' : 'border-b border-border/50 bg-background/80'}`}>
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-12">
-          <nav className="flex items-center justify-center gap-10 h-12">
-            {CATEGORIES.map((category) => (
-              <CategoryDropdown
-                key={category.id}
-                category={category}
-                isActive={isActiveCategory(category.slug)}
-                isTransparent={isTransparent}
-              />
-            ))}
-            <Link
-              href="/contact"
-              className={`text-[10px] uppercase tracking-[0.15em] transition-colors ${
-                isTransparent
-                  ? 'text-white/80 hover:text-white'
-                  : 'text-muted-foreground hover:text-foreground'
-              } ${pathname === '/contact' ? (isTransparent ? 'text-white' : 'text-foreground') : ''}`}
-            >
-              Contact
-            </Link>
-          </nav>
         </div>
       </div>
     </header>
