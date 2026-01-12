@@ -34,17 +34,33 @@ async function getCategoryImages(): Promise<Record<string, Product[]>> {
   return results;
 }
 
+// Curated product IDs for hero image (statement furniture pieces)
+const HERO_PRODUCT_IDS = [
+  '295396', // 1950's Wood Framed Cane Sofa
+  '290773', // Green Doimo Salotti Sectional Sofa
+  '291461', // Curved white leather sofa by Paolo Gucci
+];
+
 export default async function HomePage() {
   // Fetch featured products and category images in parallel
-  const [featuredProducts, categoryProducts] = await Promise.all([
+  const [featuredProducts, categoryProducts, seatingProducts] = await Promise.all([
     getFeaturedProducts(12),
     getCategoryImages(),
+    getProductsByCategory('2-SEATING', { perPage: 50 }),
   ]);
+
+  // Find a curated hero product, or fall back to first seating product with good images
+  const heroProduct = seatingProducts.products.find(p => HERO_PRODUCT_IDS.includes(p.id))
+    || seatingProducts.products.find(p => p.images.length > 3 && p.name.toLowerCase().includes('sofa'))
+    || seatingProducts.products[0];
+
+  // Use hero product as first in featured list for hero section
+  const heroProducts = heroProduct ? [heroProduct, ...featuredProducts.slice(0, 11)] : featuredProducts;
 
   return (
     <>
-      {/* Hero section with featured product images */}
-      <HeroSection featuredProducts={featuredProducts} />
+      {/* Hero section with curated hero image */}
+      <HeroSection featuredProducts={heroProducts} />
 
       {/* Category grid with real product images */}
       <CategoryGrid categoryProducts={categoryProducts} />
