@@ -156,6 +156,7 @@ async function loadLocalProducts(categorySlug: string): Promise<Product[]> {
 
 /**
  * Load all products from local JSON files
+ * Always loads from individual category files to ensure fresh data
  */
 async function loadAllLocalProducts(): Promise<Product[]> {
   const allProducts: Product[] = [];
@@ -163,22 +164,6 @@ async function loadAllLocalProducts(): Promise<Product[]> {
   for (const category of CATEGORIES) {
     const products = await loadLocalProducts(category.slug);
     allProducts.push(...products);
-  }
-
-  // Also try to load the combined file
-  try {
-    const allProductsPath = path.join(process.cwd(), 'data', 'products', 'all-products.json');
-    if (fs.existsSync(allProductsPath)) {
-      const data = fs.readFileSync(allProductsPath, 'utf-8');
-      const products = JSON.parse(data) as Product[];
-
-      // Filter out placeholder images and exclude products with no real images
-      return products
-        .map(filterPlaceholderImages)
-        .filter(p => p.images.length > 0);
-    }
-  } catch (error) {
-    console.error('Error loading all products:', error);
   }
 
   return allProducts;
