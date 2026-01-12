@@ -3,10 +3,10 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
-import { Menu, X, Search } from 'lucide-react';
+import { Menu, X, Search, ChevronDown } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Input } from '@/components/ui/input';
-import { CATEGORIES } from '@/types/product';
+import { CATEGORIES, Category } from '@/types/product';
 
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
@@ -15,10 +15,76 @@ const NAV_LINKS = [
   { href: '/favorites', label: 'Favorites' },
 ];
 
+// Dropdown menu component for categories with subcategories
+function CategoryDropdown({ category, isActive }: { category: Category; isActive: boolean }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setIsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => setIsOpen(false), 150);
+  };
+
+  if (!category.subcategories || category.subcategories.length === 0) {
+    return (
+      <Link
+        href={`/category/${category.slug}`}
+        className={`nav-link link-underline transition-colors ${
+          isActive ? 'text-foreground after:scale-x-100' : ''
+        }`}
+      >
+        {category.name}
+      </Link>
+    );
+  }
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <Link
+        href={`/category/${category.slug}`}
+        className={`nav-link link-underline transition-colors inline-flex items-center gap-1 ${
+          isActive ? 'text-foreground after:scale-x-100' : ''
+        }`}
+      >
+        {category.name}
+        <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+      </Link>
+
+      {/* Dropdown menu */}
+      <div
+        className={`absolute top-full left-0 pt-2 transition-all duration-200 ${
+          isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+        }`}
+      >
+        <div className="bg-background border border-border/50 shadow-lg min-w-[200px] py-2">
+          {category.subcategories.map((sub) => (
+            <Link
+              key={sub.id}
+              href={`/category/${sub.slug}`}
+              className="block px-4 py-2 text-xs uppercase tracking-wider text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors"
+            >
+              {sub.name}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [expandedMobileCategory, setExpandedMobileCategory] = useState<string | null>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const pathname = usePathname();
   const router = useRouter();
@@ -102,8 +168,8 @@ export function Header() {
                   <Menu className="w-5 h-5" />
                 </button>
               </SheetTrigger>
-              <SheetContent side="left" className="w-80 bg-background">
-                <nav className="flex flex-col gap-6 mt-12">
+              <SheetContent side="left" className="w-80 bg-background overflow-y-auto">
+                <nav className="flex flex-col gap-4 mt-12 pb-8">
                   {NAV_LINKS.map((link) => (
                     <Link
                       key={link.href}
@@ -114,17 +180,61 @@ export function Header() {
                     </Link>
                   ))}
                   <div className="h-px bg-border my-4" />
-                  <p className="text-xs text-muted-foreground uppercase tracking-widest mb-4">
+                  <p className="text-xs text-muted-foreground uppercase tracking-widest mb-2">
                     Categories
                   </p>
                   {CATEGORIES.map((category) => (
-                    <Link
-                      key={category.id}
-                      href={`/category/${category.slug}`}
-                      className="nav-link text-sm"
-                    >
-                      {category.name}
-                    </Link>
+                    <div key={category.id}>
+                      {category.subcategories && category.subcategories.length > 0 ? (
+                        <div>
+                          <button
+                            onClick={() => setExpandedMobileCategory(
+                              expandedMobileCategory === category.id ? null : category.id
+                            )}
+                            className="nav-link text-sm w-full flex items-center justify-between py-1"
+                          >
+                            <span>{category.name}</span>
+                            <ChevronDown
+                              className={`w-4 h-4 transition-transform duration-200 ${
+                                expandedMobileCategory === category.id ? 'rotate-180' : ''
+                              }`}
+                            />
+                          </button>
+                          <div
+                            className={`overflow-hidden transition-all duration-300 ${
+                              expandedMobileCategory === category.id
+                                ? 'max-h-[500px] opacity-100'
+                                : 'max-h-0 opacity-0'
+                            }`}
+                          >
+                            <div className="pl-4 pt-2 pb-2 flex flex-col gap-2">
+                              <Link
+                                href={`/category/${category.slug}`}
+                                className="text-xs uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"
+                              >
+                                All {category.name}
+                              </Link>
+                              {category.subcategories.map((sub) => (
+                                <Link
+                                  key={sub.id}
+                                  href={`/category/${sub.slug}`}
+                                  className="text-xs uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"
+                                >
+                                  {sub.name}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        <Link
+                          href={`/category/${category.slug}`}
+                          className="nav-link text-sm block py-1"
+                        >
+                          {category.name}
+                        </Link>
+                      )}
+                    </div>
                   ))}
                 </nav>
               </SheetContent>
@@ -180,17 +290,11 @@ export function Header() {
         <div className="max-w-[1800px] mx-auto px-6 lg:px-12">
           <nav className="flex items-center justify-center gap-10 h-12">
             {CATEGORIES.map((category) => (
-              <Link
+              <CategoryDropdown
                 key={category.id}
-                href={`/category/${category.slug}`}
-                className={`nav-link link-underline transition-colors ${
-                  isActiveCategory(category.slug)
-                    ? 'text-foreground after:scale-x-100'
-                    : ''
-                }`}
-              >
-                {category.name}
-              </Link>
+                category={category}
+                isActive={isActiveCategory(category.slug)}
+              />
             ))}
           </nav>
         </div>
