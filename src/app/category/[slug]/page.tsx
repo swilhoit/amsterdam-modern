@@ -15,6 +15,7 @@ interface CategoryPageProps {
     minPrice?: string;
     maxPrice?: string;
     availability?: string;
+    sub?: string;
   }>;
 }
 
@@ -44,13 +45,16 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 
 export default async function CategoryPage({ params, searchParams }: CategoryPageProps) {
   const { slug } = await params;
-  const { page = '1', sort = 'newest', minPrice, maxPrice, availability } = await searchParams;
+  const { page = '1', sort = 'newest', minPrice, maxPrice, availability, sub } = await searchParams;
 
   const category = CATEGORIES.find((c) => c.slug === slug);
 
   if (!category) {
     notFound();
   }
+
+  // Find subcategory name if filtering by subcategory
+  const subcategory = sub ? category.subcategories?.find(s => s.slug.includes(`sub=${sub}`)) : undefined;
 
   const currentPage = parseInt(page, 10);
   const sortOption = sort as 'newest' | 'oldest' | 'price-low' | 'price-high' | 'name-az' | 'name-za';
@@ -63,6 +67,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
     minPrice: minPrice ? parseInt(minPrice, 10) : undefined,
     maxPrice: maxPrice ? parseInt(maxPrice, 10) : undefined,
     availability: availabilityOption,
+    subcategory: sub,
   });
 
   // Build query string for pagination links
@@ -73,6 +78,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
     if (minPrice) params.set('minPrice', minPrice);
     if (maxPrice) params.set('maxPrice', maxPrice);
     if (availability) params.set('availability', availability);
+    if (sub) params.set('sub', sub);
     return params.toString();
   };
 
@@ -87,19 +93,36 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
             </Link>
           </li>
           <li>/</li>
-          <li className="text-foreground">{category.name}</li>
+          {subcategory ? (
+            <>
+              <li>
+                <Link href={`/category/${slug}`} className="hover:text-foreground transition-colors">
+                  {category.name}
+                </Link>
+              </li>
+              <li>/</li>
+              <li className="text-foreground">{subcategory.name}</li>
+            </>
+          ) : (
+            <li className="text-foreground">{category.name}</li>
+          )}
         </ol>
       </nav>
 
       {/* Category header */}
       <header className="mb-12 gallery-reveal stagger-1">
         <h1 className="text-xl md:text-2xl lg:text-3xl font-medium uppercase tracking-wide mb-4">
-          {category.name}
+          {subcategory ? subcategory.name : category.name}
         </h1>
-        {category.description && (
+        {!subcategory && category.description && (
           <p className="text-lg text-muted-foreground max-w-2xl">
             {category.description}
           </p>
+        )}
+        {subcategory && (
+          <Link href={`/category/${slug}`} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            ← View all {category.name}
+          </Link>
         )}
       </header>
 

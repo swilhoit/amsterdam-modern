@@ -13,6 +13,85 @@ import path from 'path';
 const USE_SHOPIFY = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN ? true : false;
 
 /**
+ * Subcategory keyword mappings for filtering products
+ * Each subcategory has keywords that will be matched against product names
+ */
+const SUBCATEGORY_KEYWORDS: Record<string, string[]> = {
+  // Seating subcategories
+  'accent-chairs': ['accent chair', 'armchair', 'arm chair', 'wing chair', 'wingback'],
+  'beds': ['bed', 'headboard', 'daybed'],
+  'benches': ['bench', 'settee'],
+  'daybeds': ['daybed', 'day bed', 'chaise longue', 'chaise lounge'],
+  'dining-chairs': ['dining chair', 'side chair'],
+  'dining-sets': ['dining set', 'table and chairs', 'dinette'],
+  'lounge-chairs': ['lounge chair', 'lounge', 'easy chair', 'club chair', 'barrel chair', 'swivel chair'],
+  'loveseats': ['loveseat', 'love seat', 'settee', 'two seater', '2 seater'],
+  'office': ['office chair', 'desk chair', 'task chair', 'executive chair', 'swivel'],
+  'ottomans': ['ottoman', 'footstool', 'foot stool', 'pouf', 'pouffe'],
+  'outdoor': ['outdoor', 'patio', 'garden chair', 'folding chair'],
+  'rocking-chairs': ['rocking chair', 'rocker', 'glider'],
+  'sectional-sofas': ['sectional', 'modular sofa', 'corner sofa', 'l-shaped'],
+  'sofas': ['sofa', 'couch', 'settee', 'divan', '3 seater', 'three seater'],
+  'stacking-school': ['stacking', 'school chair', 'stackable', 'classroom'],
+  'stools': ['stool', 'bar stool', 'counter stool', 'barstool'],
+
+  // Tables subcategories
+  'carts': ['cart', 'trolley', 'bar cart', 'serving cart', 'tea cart'],
+  'coffee': ['coffee table', 'cocktail table'],
+  'desks': ['desk', 'writing desk', 'secretary', 'bureau'],
+  'dining': ['dining table', 'extension table', 'expandable table'],
+  'industrial': ['industrial table', 'work table', 'factory'],
+  'nesting': ['nesting', 'nest of tables', 'stacking tables'],
+  'nightstand': ['nightstand', 'night stand', 'bedside table', 'night table', 'end table'],
+  'side': ['side table', 'end table', 'accent table', 'lamp table', 'occasional table'],
+
+  // Storage subcategories
+  'bar': ['bar cabinet', 'bar', 'liquor cabinet', 'drinks cabinet', 'dry bar'],
+  'bookshelf': ['bookshelf', 'bookcase', 'book shelf', 'book case', 'etagere', 'shelving'],
+  'credenzas': ['credenza', 'sideboard', 'buffet', 'server'],
+  'dresser': ['dresser', 'chest of drawers', 'highboy', 'lowboy', 'bureau', 'commode'],
+  'industrial-shelves': ['industrial shelf', 'industrial shelving', 'metal shelf', 'wire shelf'],
+  'vanity': ['vanity', 'dressing table', 'makeup table'],
+  'wall-units': ['wall unit', 'wall system', 'entertainment center', 'media console', 'shelving system'],
+
+  // Other subcategories
+  'accessories': ['accessory', 'accessories', 'object', 'decorative'],
+  'art': ['art', 'artwork', 'painting', 'print', 'lithograph', 'poster', 'sculpture'],
+  'ashtrays': ['ashtray', 'ash tray'],
+  'ceramics': ['ceramic', 'pottery', 'vase', 'porcelain', 'stoneware'],
+  'coat-umbrella': ['coat rack', 'coat stand', 'umbrella stand', 'hat rack', 'hall tree'],
+  'electronics': ['radio', 'speaker', 'turntable', 'record player', 'clock', 'television', 'tv'],
+  'kids': ['kids', 'children', 'child', 'toy', 'high chair', 'crib', 'nursery'],
+  'kitchenware': ['kitchen', 'cookware', 'dishware', 'serving', 'tray', 'bowl', 'pitcher'],
+  'magazine-stands': ['magazine rack', 'magazine stand', 'newspaper rack', 'periodical'],
+  'maps-charts': ['map', 'chart', 'globe', 'atlas'],
+  'mirrors': ['mirror', 'looking glass', 'wall mirror'],
+  'planters': ['planter', 'plant stand', 'flower pot', 'jardini'],
+  'rugs': ['rug', 'carpet', 'tapestry', 'kilim', 'textile'],
+};
+
+/**
+ * Filter products by subcategory using keyword matching
+ */
+function filterBySubcategory(products: Product[], subcategory: string): Product[] {
+  const keywords = SUBCATEGORY_KEYWORDS[subcategory];
+
+  if (!keywords || keywords.length === 0) {
+    // If no keywords defined, try to match the subcategory name directly
+    const subcategoryName = subcategory.replace(/-/g, ' ').toLowerCase();
+    return products.filter((p) => {
+      const searchText = `${p.name} ${p.subcategory || ''} ${p.description}`.toLowerCase();
+      return searchText.includes(subcategoryName);
+    });
+  }
+
+  return products.filter((p) => {
+    const searchText = `${p.name} ${p.subcategory || ''} ${p.description}`.toLowerCase();
+    return keywords.some((keyword) => searchText.includes(keyword.toLowerCase()));
+  });
+}
+
+/**
  * Map category name to file slug
  * Product category might be "LIGHTING" but file is "1-LIGHTING.json"
  */
@@ -108,6 +187,7 @@ export async function getProductsByCategory(
     minPrice?: number;
     maxPrice?: number;
     availability?: 'in-stock' | 'sold';
+    subcategory?: string;
   }
 ): Promise<{
   products: Product[];
@@ -119,7 +199,7 @@ export async function getProductsByCategory(
     availabilityCount: { inStock: number; sold: number };
   };
 }> {
-  const { page = 1, perPage = 24, sort = 'newest', minPrice, maxPrice, availability } = options || {};
+  const { page = 1, perPage = 24, sort = 'newest', minPrice, maxPrice, availability, subcategory } = options || {};
 
   if (USE_SHOPIFY) {
     const { getCollection, shopifyProductToProduct } = await import('./shopify');
@@ -149,7 +229,12 @@ export async function getProductsByCategory(
   }
 
   // Load from local files
-  const allProducts = await loadLocalProducts(categorySlug);
+  let allProducts = await loadLocalProducts(categorySlug);
+
+  // Filter by subcategory if specified
+  if (subcategory) {
+    allProducts = filterBySubcategory(allProducts, subcategory);
+  }
 
   // Calculate stats from all products (before filtering)
   const prices = allProducts.map((p) => p.price).filter((p) => p > 0);
