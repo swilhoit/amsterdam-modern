@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="max-w-[1800px] mx-auto px-6 lg:px-12 py-8">
+    <div className="max-w-[1800px] mx-auto px-6 lg:px-12 py-8 pt-24 md:pt-36">
       {/* Hero section */}
       <header className="max-w-4xl mx-auto text-center mb-16 lg:mb-24">
         <p className="text-xs uppercase tracking-[0.4em] text-muted-foreground mb-6 gallery-reveal">

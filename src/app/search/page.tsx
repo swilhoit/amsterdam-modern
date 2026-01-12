@@ -21,7 +21,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   const products = q ? await searchProducts(q, 48) : [];
 
   return (
-    <div className="max-w-[1800px] mx-auto px-6 lg:px-12 py-8">
+    <div className="max-w-[1800px] mx-auto px-6 lg:px-12 py-8 pt-24 md:pt-36">
       {/* Breadcrumb */}
       <nav className="mb-8 gallery-reveal">
         <ol className="flex items-center gap-2 text-sm text-muted-foreground">

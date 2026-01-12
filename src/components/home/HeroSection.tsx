@@ -84,19 +84,41 @@ export function HeroSection({ featuredProducts = [] }: HeroSectionProps) {
           </div>
         </div>
 
-        {/* Slide indicators */}
-        {sliderProducts.length > 1 && (
-          <div className="absolute bottom-12 right-8 lg:right-16 xl:right-24 flex items-center gap-2">
-            {sliderProducts.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-8 h-[1px] transition-all duration-300 ${
-                  index === currentIndex ? 'bg-white' : 'bg-white/30'
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
+        {/* Featured item indicator */}
+        {currentProduct && (
+          <div className="absolute bottom-12 right-8 lg:right-16 xl:right-24 text-right">
+            <span className="block text-[9px] uppercase tracking-[0.3em] text-white/50 mb-2">
+              Featured
+            </span>
+            <Link
+              href={`/product/${currentProduct.id}-${currentProduct.slug}`}
+              className="group block"
+            >
+              <span className="text-[11px] uppercase tracking-[0.15em] text-white/80 group-hover:text-white transition-colors">
+                {currentProduct.name}
+              </span>
+            </Link>
+            {currentProduct.designer && (
+              <span className="block text-[9px] uppercase tracking-[0.2em] text-white/50 mt-1">
+                {currentProduct.designer}
+              </span>
+            )}
+
+            {/* Slide indicators */}
+            {sliderProducts.length > 1 && (
+              <div className="flex items-center justify-end gap-2 mt-4">
+                {sliderProducts.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentIndex(index)}
+                    className={`w-8 h-[1px] transition-all duration-300 ${
+                      index === currentIndex ? 'bg-white' : 'bg-white/30'
+                    }`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>
